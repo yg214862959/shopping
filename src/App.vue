@@ -6,8 +6,8 @@
           <router-view/>
         </transition>
       </main>
-      <footer-nav v-if="show"/>
-  </div>
+      <footer-nav id="footer" v-if="show"/>
+    </div>
 </template>
 
 <script>
@@ -30,15 +30,13 @@ export default {
 };
 </script>
 
-<style>
+<style long="sass">
 html,body {
     height: 100%;
 }
 #app {
     height: 100%;
-    font-size: 16px;
-    overflow-x: hidden;
-    overflow-y: auto;  
+    font-size: 16px;  
 }
 .bg{
     position:fixed;
@@ -47,10 +45,19 @@ html,body {
     height: 100vh;
     width: 100vh;
 }
-.active {
-    color: red;
-}
 .ivu-modal-footer {
     display: none;
+}
+main{
+    height: calc(100% - 40px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#footer{
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
 }
 </style>
