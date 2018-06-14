@@ -23,7 +23,9 @@ const state={
         "详情"
     ],
     titel:"",
-    show:true
+    show:true,
+    shopdata:[],
+    addshop:[]
 }
 const mutations={
     nofoot(state){
@@ -34,6 +36,22 @@ const mutations={
     },
     titlex(state){     
         state.titel=state.titelList[sessionStorage.index]
+    },
+    takeshop(state,data){
+        //先加入一个数组
+        state.shopdata.push(data);
+        //每个对象中加个新元素
+        state.shopdata.map(((item, index)=> {
+            state.addshop.push(Object.assign({},item,{check:false}))               
+        }));
+        //要清空一下
+        state.shopdata=[];
+        //去重
+        let hash = {}; 
+        state.addshop = state.addshop.reduce((item, next)=>{ 
+        hash[next.gamename] ? '' : hash[next.gamename] = true && item.push(next); 
+        return item 
+        }, [])
     }
 }
 const actions={
