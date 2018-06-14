@@ -8,6 +8,13 @@ const state={
     hotgame:[],
     newgame:[],
     recommendgame:[],
+    allgame:[],
+    navItem:[
+        "ios-home-outline",
+        "ios-search-strong",
+        "ios-cart-outline",
+        "ios-person-outline"
+    ],
     show:true
 }
 const mutations={
@@ -32,6 +39,11 @@ const actions={
     recommendgame(context){
         return axios.get("http://localhost:8080/static/json/RecommendGame.json").then((resp)=>{
             context.state.recommendgame=resp.data;
+        })
+    },
+    allgame(context){
+        return axios.get("http://localhost:8080/static/json/GameData.json").then((resp)=>{
+            context.state.allgame=resp.data;
         })
     }
 }
