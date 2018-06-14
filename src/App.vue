@@ -1,6 +1,7 @@
 <template>
     <div id="app">
       <div class="bg"></div>
+      <header-nav id="header"></header-nav>
       <main>
         <transition name="bounce">
           <router-view/>
@@ -12,14 +13,16 @@
 
 <script>
 import store from "./vuex/store"
-import Home from "./components/page/Home";
-import FooterNav from "./components/component/FooterNav";
+import Home from "./components/page/Home"
+import HeaderNav from "./components/component/Header"
+import FooterNav from "./components/component/FooterNav"
 
 export default {
     name: "App",
     components: {
         Home,
-        FooterNav
+        FooterNav,
+        HeaderNav
     },
     computed:{
       show(){
@@ -30,13 +33,13 @@ export default {
 };
 </script>
 
-<style long="sass">
+<style>
 html,body {
     height: 100%;
+    font-family: Microsoft Yahei;
 }
 #app {
     height: 100%;
-    font-size: 16px;  
 }
 .bg{
     position:fixed;
@@ -49,9 +52,18 @@ html,body {
     display: none;
 }
 main{
-    height: calc(100% - 40px);
+    position: relative;
+    top:36px;
+    height: calc(100% - 36px - 40px);
     overflow-x: hidden;
     overflow-y: auto;
+}
+#header{
+    width: 100%;
+    height: 36px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 #footer{
     position: fixed;

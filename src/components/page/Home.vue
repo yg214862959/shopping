@@ -123,12 +123,12 @@
             </Row>
             <Row class="illustrate">
                 <Col span="24">
-                    <p>{{xitem.illustrate}}</p>
                     <router-link 
                     :to="{name: 'gamedetails',params:{oitem:xitem}}" 
                     tag="a">
                     详情
                     </router-link>
+                    <p>{{xitem.illustrate}}</p>
                 </Col>
             </Row>
             
@@ -200,7 +200,7 @@ export default {
     width: auto
 }
 .scrollNews li{
-    font-size: 20px;
+    font-size: 18px;
     padding: 6px;
     text-align: center;
     max-width: 100%;
@@ -238,7 +238,6 @@ hr{
 }
 .list-ul li p:nth-child(3){
     color: orangered;
-    font-size: 14px;
 }
 .list-box{
     padding: 15px

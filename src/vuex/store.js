@@ -15,6 +15,14 @@ const state={
         "ios-cart-outline",
         "ios-person-outline"
     ],
+    titelList:[
+        "首页",
+        "搜索",
+        "购物车",
+        "个人中心",
+        "详情"
+    ],
+    titel:"",
     show:true
 }
 const mutations={
@@ -23,6 +31,9 @@ const mutations={
     },
     yesfoot(state){
         state.show=true;
+    },
+    titlex(state){     
+        state.titel=state.titelList[sessionStorage.index]
     }
 }
 const actions={
