@@ -125,13 +125,12 @@
                 <Col span="24">
                     <router-link 
                     :to="{name: 'gamedetails',params:{oitem:xitem}}" 
-                    tag="a">
-                    详情
+                    tag="a" style="font-size:15px">
+                    详情&nbsp<Icon type="ios-more"></Icon>
                     </router-link>
                     <p>{{xitem.illustrate}}</p>
                 </Col>
-            </Row>
-            
+            </Row>          
         </Modal>
     </div>
 </template>
