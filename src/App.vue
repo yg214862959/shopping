@@ -56,14 +56,14 @@ html,body {
 }
 main{
     position: relative;
-    top:45px;
-    height: calc(100% - 45px - 40px);
+    top:40px;
+    height: calc(100% - 40px - 40px);
     overflow-x: hidden;
     overflow-y: auto;
 }
 #header{
     width: 100%;
-    height: 45px;
+    height: 40px;
     position: fixed;
     top: 0;
     z-index: 100;

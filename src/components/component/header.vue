@@ -27,8 +27,8 @@ export default {
     background-color:#2D8CF0;
     text-align: center;
     color: #fff;
-    line-height: 45px;
-    font-size: 18px;
+    line-height: 40px;
+    font-size: 16px;
 }
 </style>
 
