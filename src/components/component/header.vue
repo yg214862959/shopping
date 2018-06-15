@@ -24,10 +24,10 @@ export default {
 
 <style scoped>
 .heardbox{
-    background-color: rgb(39, 109, 223);
+    background-color:#2D8CF0;
     text-align: center;
     color: #fff;
-    line-height: 36px;
+    line-height: 45px;
     font-size: 18px;
 }
 </style>

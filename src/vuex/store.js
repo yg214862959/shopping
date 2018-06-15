@@ -25,7 +25,8 @@ const state={
     titel:"",
     show:true,
     shopdata:[],
-    addshop:[]
+    addshop:[],
+    checkdel:[]
 }
 const mutations={
     nofoot(state){
@@ -42,7 +43,7 @@ const mutations={
         state.shopdata.push(data);
         //每个对象中加个新元素
         state.shopdata.map(((item, index)=> {
-            state.addshop.push(Object.assign({},item,{check:false}))               
+            state.addshop.push(Object.assign({},item,{check:false,num:1}))               
         }));
         //要清空一下
         state.shopdata=[];
@@ -52,6 +53,37 @@ const mutations={
         hash[next.gamename] ? '' : hash[next.gamename] = true && item.push(next); 
         return item 
         }, [])
+    },
+    deluser(state,k) {
+        state.addshop.splice(state.addshop.indexOf(k), 1);
+    },
+    checkone(state,k){
+        if (!state.addshop[k].check) {
+            state.addshop[k].check=true
+        }else{
+            state.addshop[k].check=false
+        }
+    },
+    deluesrAll(state) {
+        let arr = [];
+            for (let p in state.addshop) {
+                if (state.addshop[p].check) {
+                    arr.push(state.addshop[p]);
+                }
+            }
+            for (let x = 0; x < arr.length; x++) {
+                state.addshop.splice(state.addshop.indexOf(arr[x]), 1);
+            }
+    },
+    addshopnum(state,e){
+        state.addshop[e].num++
+    },
+    delshopnum(state,e){
+        if(state.addshop[e].num>1){
+            state.addshop[e].num--
+        }else{
+            state.addshop[e].num=1
+        }      
     }
 }
 const actions={
