@@ -1,6 +1,6 @@
 <template>
     <Row class="heardbox">
-        <Col>
+        <Col span="24">
             <p>{{gettitel}}</p>
         </Col>
     </Row>

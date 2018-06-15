@@ -11,7 +11,7 @@
                         <p>发行时间：{{gamedata.time}}</p>
                         <p>售价：HK<Icon type="social-usd"/>{{gamedata.price | moneyFormat}}</p>
                         <p>
-                            <Button type="info">加入购物车</Button>
+                            <Button type="info" @click="shopadd(gamedata),success()">加入购物车</Button>
                         </p>
                         <p>
                             <Button type="success">立即购买</Button>
@@ -61,7 +61,13 @@ export default {
     methods: {
         tab(index) {
             this.num = index;   
-        }
+        },
+        shopadd(val){
+            store.commit('takeshop',val)
+        },
+        success () {
+            this.$Message.success('成功添加到购物车');
+        },
     },
     store
 }
