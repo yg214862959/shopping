@@ -1,7 +1,7 @@
 <template>
     <div class="footbox">       
         <div v-for="(nav,index) in getnav" 
-        @click="routerlink($router.options.routes[index+1].name,index)" 
+        @click="routerlink($router.options.routes[index+1].name,index),titelx()" 
         :class="{active:num==index}"
         :key="(nav,index).id">
         <Icon :type="nav"></Icon>
@@ -28,6 +28,9 @@ export default {
             this.num=index;
             this.$router.push({name:navTitle,    
             });
+        },
+        titelx(){
+            store.commit('titlex')
         }
     },
     computed:{
@@ -42,7 +45,7 @@ export default {
 <style scoped>
 .active {
     color: rgb(255, 115, 0);
-    font-size: 24px
+    transform: scale(1.5,1.5)
 }
 .footbox{
     display: flex;
@@ -50,5 +53,6 @@ export default {
     line-height: 40px;
     border-top:1px solid #DCDCDC; 
     background-color: rgb(238, 238, 238);
+    font-size: 20px
 }
 </style>

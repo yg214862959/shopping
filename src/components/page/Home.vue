@@ -114,7 +114,7 @@
                     <p>发行时间：{{xitem.time}}</p>
                     <p>售价：HK<Icon type="social-usd"/>{{xitem.price | moneyFormat}}</p>
                     <p>
-                        <Button type="info">加入购物车</Button>
+                        <Button type="info" @click="shopadd(xitem),success()">加入购物车</Button>
                     </p>
                     <p>
                         <Button type="success">立即购买</Button>
@@ -123,12 +123,12 @@
             </Row>
             <Row class="illustrate">
                 <Col span="24">
-                    <p>{{xitem.illustrate}}</p>
                     <router-link 
                     :to="{name: 'gamedetails',params:{oitem:xitem}}" 
                     tag="a">
                     详情
                     </router-link>
+                    <p>{{xitem.illustrate}}</p>
                 </Col>
             </Row>
             
@@ -172,6 +172,12 @@ export default {
         toindex(item){
             this.xitem=item;
         },
+        shopadd(val){
+            store.commit('takeshop',val)
+        },
+        success () {
+            this.$Message.success('成功添加到购物车');
+        },
     },
     computed:{
         newgame(){
@@ -200,7 +206,7 @@ export default {
     width: auto
 }
 .scrollNews li{
-    font-size: 20px;
+    font-size: 18px;
     padding: 6px;
     text-align: center;
     max-width: 100%;
@@ -238,7 +244,6 @@ hr{
 }
 .list-ul li p:nth-child(3){
     color: orangered;
-    font-size: 14px;
 }
 .list-box{
     padding: 15px
