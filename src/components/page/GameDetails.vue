@@ -1,6 +1,5 @@
 <template>
     <div>
-        <router-link :to="{name: 'home'}" tag="a" >返回</router-link>
         <Row class="data-box">
             <Col span="24">            
                 <Row class="text-box">
