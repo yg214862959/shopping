@@ -8,6 +8,7 @@
         </transition>
       </main>
       <footer-nav id="footer" v-if="show"/>
+      <back id="footer" v-if="!show"/>
     </div>
 </template>
 
@@ -16,13 +17,15 @@ import store from "./vuex/store"
 import Home from "./components/page/Home"
 import HeaderNav from "./components/component/Header"
 import FooterNav from "./components/component/FooterNav"
+import Back from "./components/component/Back"
 
 export default {
     name: "App",
     components: {
         Home,
         FooterNav,
-        HeaderNav
+        HeaderNav,
+        Back
     },
     computed:{
       show(){
@@ -53,14 +56,14 @@ html,body {
 }
 main{
     position: relative;
-    top:36px;
-    height: calc(100% - 36px - 40px);
+    top:40px;
+    height: calc(100% - 40px - 40px);
     overflow-x: hidden;
     overflow-y: auto;
 }
 #header{
     width: 100%;
-    height: 36px;
+    height: 40px;
     position: fixed;
     top: 0;
     z-index: 100;

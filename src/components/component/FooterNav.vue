@@ -2,7 +2,7 @@
     <div class="footbox">       
         <div v-for="(nav,index) in getnav" 
         @click="routerlink($router.options.routes[index+1].name,index),titelx()" 
-        :class="{active:num==index}"
+        :class="{active:num==index,noactive:num!=index}"
         :key="(nav,index).id">
         <Icon :type="nav"></Icon>
         </div>      
@@ -16,7 +16,7 @@ export default {
     data(){
     return{
             num:0
-    }
+        }
   },
   created (){
       if(sessionStorage.index)
@@ -44,14 +44,17 @@ export default {
 
 <style scoped>
 .active {
-    color:rgb(39, 109, 223);
-    /* color: rgb(255, 115, 0); */
-    transform: scale(1.5,1.5)
+    color:#2D8CF0;
+    transform: scale(1.6,1.6);
+    transition: all 0.1s linear;
+}
+.noactive{
+    transition: all 0.1s linear;
 }
 .footbox{
     display: flex;
     justify-content: space-around;
-    line-height: 40px;
+    line-height: 39px;
     border-top:1px solid #DCDCDC; 
     background-color: rgb(238, 238, 238);
     font-size: 20px
