@@ -251,7 +251,7 @@ hr{
     width: 90%;
 }
 .model .info-box p{
-    padding: 5px;
+    padding-bottom: 5px;
 }
 .illustrate{
     padding: 10px

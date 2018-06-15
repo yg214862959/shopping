@@ -73,6 +73,9 @@ export default {
 </script>
 
 <style scoped>
+.info-box p{
+    margin-bottom:5px; 
+}
 .data-box{
     padding: 10px;
 }
