@@ -1,17 +1,19 @@
 <template>
     <Row>
         <Col>
-        <Input v-model="searchVal" placeholder="搜索" style="width: 100%" />
+        <Input id="search" v-model="searchVal" placeholder="搜索"/>
             <ul>
-                <router-link  
+                <router-link  id="router-link"
                 v-for="(item,index) in searchData" 
                 :to="{name: 'gamedetails',params:{oitem:item}}"
                 tag="li"
                 :key="(item,index).id">
-                    <img :src="item.img" alt="">
-                    <span>{{item.gamename}}</span>
-                    <span>发行时间：{{item.time}}</span>
-                    <span>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</span>
+                    <img id="imgs" :src="item.img" alt="">
+                    <div id="search-right">
+                        <span>{{item.gamename}}</span>
+                        <span>发行时间：{{item.time}}</span>
+                        <span>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</span>
+                    </div>
                 </router-link>
             </ul>
         </Col>
@@ -42,4 +44,29 @@ export default {
 </script>
 
 <style scoped>
+#search{
+    /* position: fixed; */
+    /* top: 36px; */
+}
+#router-link{
+    margin: 10px;
+    height: 110px;
+    border-bottom: 1px solid #DCDCDC;
+}
+#imgs{
+   width: 100px;
+   height: 100px;
+   float: left;
+}
+span{
+    display:inline-block;
+    margin-bottom: 5px;
+}
+#search-right span:nth-child(3){
+     color: orangered;
+}
+#search-right{
+    width: 65%;
+    float: right;
+}
 </style>

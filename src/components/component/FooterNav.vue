@@ -44,7 +44,8 @@ export default {
 
 <style scoped>
 .active {
-    color: rgb(255, 115, 0);
+    color:rgb(39, 109, 223);
+    /* color: rgb(255, 115, 0); */
     transform: scale(1.5,1.5)
 }
 .footbox{
