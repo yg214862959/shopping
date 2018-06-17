@@ -6,7 +6,9 @@ import axios from 'axios'
 import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import store from "./vuex/store"
 
+import $ from 'jquery';
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(iView);
@@ -31,13 +33,16 @@ Vue.filter('moneyFormat', function(value) {
       return intPartFormat + floatPart;  
   }  
 });  
-
+router.afterEach((to,from,next) => {
+    window.scrollTo(0,0);
+  });
 
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -24,12 +24,17 @@
                     </Row>                    
                 </li>
             </ul>
+            <router-link 
+            :to="{name: 'settlement'}" 
+            tag="p">
+                <Button type="success" long v-show="getshop.length!==0" @click="sumprice()">前往支付</Button>
+            </router-link>
+            
         </Col>
     </Row>
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:'Shopping',
     data(){
@@ -38,35 +43,37 @@ export default {
     },
     computed:{
         getshop(){
-            return store.state.addshop
+            return this.$store.state.addshop
         },
     },
     methods:{
         //数量+1
         upnum(e){
-            store.commit("addshopnum",e)
+            this.$store.commit("addshopnum",e)
         },
         //数量-1
         downnum(e){
-            store.commit("delshopnum",e)
+            this.$store.commit("delshopnum",e)
         },
         //单个删除
         deluser(val){
-            store.commit("deluser",val)
+            this.$store.commit("deluser",val)
         },
         //勾选事件
         checkone(val){
-            store.commit("checkone",val)
+            this.$store.commit("checkone",val)
         },
         //批量删除
         deluesrAll(){
-            store.commit("deluesrAll")
+            this.$store.commit("deluesrAll")
         },
         error () {
             this.$Message.error('成功删除');
+        },
+        sumprice(){
+            this.$store.commit("sumprice");
         }
     },
-    store
 }
 </script>
 

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:"GameDetails",
     data(){
@@ -47,14 +46,14 @@ export default {
         }
     },
     created(){
-        store.commit('nofoot');
+        this.$store.commit('nofoot');
         sessionStorage.index=4;
-        store.commit('titlex')
+        this.$store.commit('titlex')
     },
     beforeRouteLeave(to, from, next) {
         sessionStorage.index=0;
-        store.commit('titlex');
-        store.commit('yesfoot');
+        this.$store.commit('titlex');
+        this.$store.commit('yesfoot');
         next();
     },
     methods: {
@@ -62,13 +61,12 @@ export default {
             this.num = index;   
         },
         shopadd(val){
-            store.commit('takeshop',val)
+            this.$store.commit('takeshop',val)
         },
         success () {
             this.$Message.success('成功添加到购物车');
         },
     },
-    store
 }
 </script>
 

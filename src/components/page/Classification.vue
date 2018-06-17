@@ -10,9 +10,9 @@
                 :key="(item,index).id">
                     <img id="imgs" :src="item.img" alt="">
                     <div id="search-right">
-                        <span>{{item.gamename}}</span>
-                        <span>发行时间：{{item.time}}</span>
-                        <span>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</span>
+                        <p>{{item.gamename}}</p>
+                        <p>发行时间：{{item.time}}</p>
+                        <p>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</p>
                     </div>
                 </router-link>
             </ul>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:"Classification",
     data(){
@@ -30,24 +29,19 @@ export default {
         }
     },
     created(){
-        store.dispatch('allgame')
+        this.$store.dispatch('allgame')
     },
     computed:{
         searchData(){
-            return store.state.allgame.filter((val)=>{ 
+            return this.$store.state.allgame.filter((val)=>{ 
                return new RegExp(this.searchVal,'i').test(val.gamename);
             }) 
         },
     },
-    store
 }
 </script>
 
 <style scoped>
-#search{
-    /* position: fixed; */
-    /* top: 36px; */
-}
 #router-link{
     margin: 10px;
     height: 110px;
@@ -58,11 +52,10 @@ export default {
    height: 100px;
    float: left;
 }
-span{
-    display:inline-block;
+p{
     margin-bottom: 5px;
 }
-#search-right span:nth-child(3){
+#search-right p:nth-child(3){
      color: orangered;
 }
 #search-right{

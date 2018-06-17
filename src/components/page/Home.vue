@@ -136,8 +136,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import store from "../../vuex/store"
 export default {
     name: "Home",
     data () {
@@ -172,7 +170,7 @@ export default {
             this.xitem=item;
         },
         shopadd(val){
-            store.commit('takeshop',val)
+            this.$store.commit('takeshop',val)
         },
         success () {
             this.$Message.success('成功添加到购物车');
@@ -180,16 +178,15 @@ export default {
     },
     computed:{
         newgame(){
-            return store.state.newgame
+            return this.$store.state.newgame
         },
         hotgame(){
-            return store.state.hotgame
+            return this.$store.state.hotgame
         },
         recommendgame(){
-            return store.state.recommendgame
+            return this.$store.state.recommendgame
         }
     },
-    store  
 };
 </script>
 
