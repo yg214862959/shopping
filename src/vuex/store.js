@@ -21,7 +21,8 @@ const state={
         "购物车",
         "个人中心",
         "详情",
-        "支付中心"
+        "支付中心",
+        "SONY"
     ],
     titel:"",
     show:true,
@@ -39,8 +40,8 @@ const state={
             code:"",
             moreaddress:""
         }
-    ]
-
+    ],
+    user:{}
 }
 
 
@@ -120,6 +121,9 @@ const mutations={
             state.userdatas.push(Object.assign({},item,{address:state.address}))               
         }));
         state.userdatax=[];
+    },
+    adduser(state,val){
+        state.user=val;
     }
 }
 

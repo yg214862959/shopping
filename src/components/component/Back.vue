@@ -1,6 +1,8 @@
 <template>
     <div class="backbox">       
-        <router-link :to="{name: backpage}" tag="div" class="back"><Icon type="playstation"></Icon></router-link>
+            <div class="back" @click="backpage()">
+                <Icon type="playstation"></Icon>
+            </div>           
     </div>
 </template>
 
@@ -12,15 +14,15 @@ export default {
             backrouter:""
         }
     },
-    computed:{
+    methods:{
         backpage(){
-            if(sessionStorage.index==4){
-                return this.backrouter="home"
-            }else if(sessionStorage.index==5){
-                return this.backrouter="shopping"
-            }
-        }
-    }
+            if(sessionStorage.index==6){
+                return false
+            }else{
+                this.$router.go(-1);
+            }               
+        },
+    },
 }
 </script>
 

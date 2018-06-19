@@ -69,6 +69,7 @@
                        </ul>
                     </Col>
                 </Row>
+                <hr>
                 <Row class="list-box">
                     <Col span="24">
                     <h3>热门游戏</h3>
@@ -83,6 +84,7 @@
                        </ul>
                     </Col>
                 </Row>
+                <hr>
                 <Row class="list-box">
                     <Col span="24">
                     <h3>推荐游戏</h3>
@@ -114,10 +116,14 @@
                     <p>发行时间：{{xitem.time}}</p>
                     <p>售价：HK<Icon type="social-usd"/>{{xitem.price | moneyFormat}}</p>
                     <p>
-                        <Button type="info" @click="shopadd(xitem),success()">加入购物车</Button>
+                        <Button type="info" @click="shopadd(xitem)">加入购物车</Button>
                     </p>
                     <p>
-                        <Button type="success">立即购买</Button>
+                        <router-link 
+                        :to="{name: 'shopping'}"
+                        tag="span">
+                            <Button type="success" @click="shopadd(xitem),resetfoot()">立即购买</Button>
+                        </router-link>                       
                     </p>                   
                 </Col>
             </Row>
@@ -145,10 +151,13 @@ export default {
             xitem:[],          
         }
     },
-    created(){
-       this.$store.dispatch('newgame');
-       this.$store.dispatch('hotgame');
-       this.$store.dispatch('recommendgame')
+    created(){        
+        sessionStorage.index=0;
+        this.$store.commit('titlex');
+        this.$store.commit('yesfoot');
+        this.$store.dispatch('newgame');
+        this.$store.dispatch('hotgame');
+        this.$store.dispatch('recommendgame');
     },
     mounted(){
            window.timer= setInterval(()=>{
@@ -170,10 +179,11 @@ export default {
             this.xitem=item;
         },
         shopadd(val){
-            this.$store.commit('takeshop',val)
-        },
-        success () {
+            this.$store.commit('takeshop',val);
             this.$Message.success('成功添加到购物车');
+        },
+        resetfoot(){
+            this.$store.commit('nofoot');
         },
     },
     computed:{

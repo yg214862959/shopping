@@ -1,7 +1,7 @@
 <template>
     <Row>
         <Col span="24">
-            <Button @click="modal5 = true">{{titles}}</Button>
+            <Button @click="modal5 = true" :type="types" long>{{titles}}</Button>
             <Modal
                 v-model="modal5"
                 :title="titles"
@@ -11,7 +11,7 @@
                 <label>邮编：<Input v-model="userdata.code" placeholder="输入你的邮编"></Input></label>
                 地址：<Cascader :data="getaddress" v-model="value" change-on-select></Cascader>
                 <label>详细地址： <Input v-model="userdata.moreaddress" type="textarea" placeholder="街道/小区/单元/门牌号"></Input></label>
-                <Button type="success" @click="adduser()" long>确认</Button>
+                <Button type="success" @click="adduser()" long style="margin-top: 6px;">确认</Button>
             </Modal>
         </Col>
     </Row>        
@@ -26,12 +26,18 @@ export default {
         },
         titles(){
             if(this.$store.state.userdatas.length>1){
-                console.log(this.userdata.length)
                 return this.titlechange
             }else if(this.$store.state.userdatas.length=1){
                 return this.titleadd
             }
-        }   
+        },
+        types(){
+           if(this.$store.state.userdatas.length>1){
+                return this.primary
+            }else if(this.$store.state.userdatas.length=1){
+                return this.success
+            } 
+        } 
     },
     methods:{       
         adduser(){
@@ -40,7 +46,8 @@ export default {
             }else{
                 this.$store.commit("addressval",this.value)
                 this.$store.commit("adduserdata",this.userdata);
-                this.$Message.success('成功')
+                this.$Message.success('成功');
+                this.modal5=false;
             }         
         }
     },
@@ -58,9 +65,14 @@ export default {
                     moreaddress:""
                 },
             titlechange:"更改收件信息",
-            titleadd:"新增收件信息",   
+            titleadd:"新增收件信息",
+            success:"success",
+            primary:"primary",
             modal5:false
         };
     }
 };
 </script>
+ <style lang="scss" scoped>
+ </style>
+ 

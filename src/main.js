@@ -33,10 +33,17 @@ Vue.filter('moneyFormat', function(value) {
       return intPartFormat + floatPart;  
   }  
 });  
+
 router.afterEach((to,from,next) => {
     window.scrollTo(0,0);
   });
 
+// router.beforeEach((to, from, next) => {
+//     if(localStorage.login==1) 
+//     {return next({path: "/Home"})}
+//     else if(localStorage.login==0) {return next({path: "/Login"})};
+//     next();
+// });
 
 /* eslint-disable no-new */
 new Vue({

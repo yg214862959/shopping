@@ -23,6 +23,7 @@ export default {
       if(sessionStorage.index)
       this.num=sessionStorage.index;
   },
+
     methods:{
         routerlink(navTitle,index){
             sessionStorage.index=index;
@@ -65,6 +66,6 @@ export default {
 .badge{
     position: absolute;
     top: 1px;
-    right: 100px;
+    right: 26%;
 }
 </style>
