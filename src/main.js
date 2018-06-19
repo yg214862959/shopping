@@ -34,18 +34,32 @@ Vue.filter('moneyFormat', function(value) {
   }  
 });  
 
-router.afterEach((to,from,next) => {
+router.afterEach((to,from) => {
     window.scrollTo(0,0);
   });
 
-// router.beforeEach((to, from, next) => {
-//     if(localStorage.login==1) 
-//     {return next({path: "/Home"})}
-//     else if(localStorage.login==0) {return next({path: "/Login"})};
-//     next();
-// });
+//登陆状态和权限判断
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;//网页标签更改，需要mate值
+    const role = localStorage.ms_username;
+    const roleones = sessionStorage.ms_username;
+    if (to.matched.some(record => record.meta.requireAuth)){  //判断点击的该路由是否需要有权限进入，需要mate值
+        if(!role){   //判断是有自动登陆
+            if(!roleones){  //判断是否已经登陆
+                next('/login');  //条件都不符合跳转登陆界面
+            }else{
+                next();  //进入组件
+            }       
+        }else{
+            next();     //进入组件 
+        }
+    }else {
+        next();        //进入组件
+    }    
+})
 
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,

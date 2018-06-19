@@ -78,7 +78,8 @@ export default {
     methods:{
         error () {
             this.$Message.error('退出登陆');
-            localStorage.login=0;
+            localStorage.clear('ms_username');
+            sessionStorage.clear('ms_username');
         },
     },
     computed:{
