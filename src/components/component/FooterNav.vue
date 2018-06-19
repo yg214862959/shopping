@@ -5,23 +5,25 @@
         :class="{active:num==index,noactive:num!=index}"
         :key="(nav,index).id">
         <Icon :type="nav"></Icon>
-        </div>      
+        </div>
+        <Badge :count=len class="badge" v-if="shoplength!==0"></Badge>      
     </div>
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:'FooterNav' ,
     data(){
     return{
-            num:0
+            num:0,
+            len:0
         }
   },
   created (){
       if(sessionStorage.index)
       this.num=sessionStorage.index;
   },
+
     methods:{
         routerlink(navTitle,index){
             sessionStorage.index=index;
@@ -30,15 +32,17 @@ export default {
             });
         },
         titelx(){
-            store.commit('titlex')
+            this.$store.commit('titlex')
         }
     },
     computed:{
         getnav(){
-            return store.state.navItem
+            return this.$store.state.navItem
+        },
+        shoplength(){
+            return this.len=this.$store.state.addshop.length
         }
     },
-    store   
 }
 </script>
 
@@ -58,5 +62,10 @@ export default {
     border-top:1px solid #DCDCDC; 
     background-color: rgb(238, 238, 238);
     font-size: 20px
+}
+.badge{
+    position: absolute;
+    top: 1px;
+    right: 26%;
 }
 </style>

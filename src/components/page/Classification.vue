@@ -1,17 +1,19 @@
 <template>
-    <Row>
+    <Row class="Classification">
         <Col>
-        <Input v-model="searchVal" placeholder="搜索" style="width: 100%" />
+        <Input id="search" v-model="searchVal" placeholder="搜索"/>
             <ul>
-                <router-link  
+                <router-link  id="router-link"
                 v-for="(item,index) in searchData" 
                 :to="{name: 'gamedetails',params:{oitem:item}}"
                 tag="li"
                 :key="(item,index).id">
-                    <img :src="item.img" alt="">
-                    <span>{{item.gamename}}</span>
-                    <span>发行时间：{{item.time}}</span>
-                    <span>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</span>
+                    <img id="imgs" :src="item.img" alt="">
+                    <div id="search-right">
+                        <p><Icon type="ios-game-controller-b"></Icon>{{item.gamename}}</p>
+                        <p><Icon type="clock"></Icon>发行时间：{{item.time}}</p>
+                        <p>售价：HK<Icon type="social-usd"/>{{item.price | moneyFormat}}</p>
+                    </div>
                 </router-link>
             </ul>
         </Col>
@@ -19,7 +21,6 @@
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:"Classification",
     data(){
@@ -28,18 +29,44 @@ export default {
         }
     },
     created(){
-        store.dispatch('allgame')
+        sessionStorage.index=1;
+        this.$store.commit('titlex');
+        this.$store.commit('yesfoot');
+        this.$store.dispatch('allgame')
     },
     computed:{
         searchData(){
-            return store.state.allgame.filter((val)=>{ 
+            return this.$store.state.allgame.filter((val)=>{ 
                return new RegExp(this.searchVal,'i').test(val.gamename);
             }) 
         },
     },
-    store
 }
 </script>
 
 <style scoped>
+.Classification{
+    padding: 12px
+}
+#router-link{
+    /* margin: 10px; */
+    padding: 12px;
+    height: 110px;
+    border-bottom: 1px solid #DCDCDC;
+    list-style: none;
+}
+#imgs{
+   height: 100%;
+   float: left;
+}
+p{
+    margin-bottom: 5px;
+}
+#search-right p:nth-child(3){
+     color: orangered;
+}
+#search-right{
+    width: 65%;
+    float: right;
+}
 </style>
