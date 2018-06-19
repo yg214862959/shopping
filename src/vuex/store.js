@@ -20,14 +20,32 @@ const state={
         "搜索",
         "购物车",
         "个人中心",
-        "详情"
+        "详情",
+        "支付中心",
+        "SONY"
     ],
     titel:"",
     show:true,
     shopdata:[],
     addshop:[],
-    checkdel:[]
+    checkdel:[],
+    sum:0,
+    address:"",
+    addressdata:[],
+    userdatax:[],
+    userdatas:[
+        {
+            name:"",
+            tel:"",
+            code:"",
+            moreaddress:""
+        }
+    ],
+    user:{}
 }
+
+
+//辅助方法部分
 const mutations={
     nofoot(state){
         state.show=false;
@@ -84,8 +102,34 @@ const mutations={
         }else{
             state.addshop[e].num=1
         }      
+    },
+    sumprice(state){
+        state.sum=0;
+        for(let i in state.addshop) {
+            state.sum+=state.addshop[i].price*state.addshop[i].num
+        }
+    },
+    addressval(state,val){
+        state.address="";
+        for(let i in val){
+            state.address+=val[i]+"/"
+        }            
+    },
+    adduserdata(state,val){
+        state.userdatax.push(val)
+        state.userdatax.map(((item, index)=> {
+            state.userdatas.push(Object.assign({},item,{address:state.address}))               
+        }));
+        state.userdatax=[];
+    },
+    adduser(state,val){
+        state.user=val;
     }
 }
+
+
+
+//异步模块
 const actions={
     newgame(context){
         return axios.get("http://localhost:8080/static/json/NewGame.json").then((resp)=>{
@@ -105,6 +149,11 @@ const actions={
     allgame(context){
         return axios.get("http://localhost:8080/static/json/GameData.json").then((resp)=>{
             context.state.allgame=resp.data;
+        })
+    },
+    getaddress(context){
+        return axios.get("http://localhost:8080/static/json/Address.json").then((resp)=>{
+            context.state.addressdata=resp.data;
         })
     }
 }

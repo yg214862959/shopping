@@ -7,18 +7,16 @@
 </template>
 
 <script>
-import store from "../../vuex/store"
 export default {
     name:'HeaderNav',
     created(){
-        store.commit('titlex')
+        this.$store.commit('titlex')
     },
     computed:{
         gettitel(){
-            return store.state.titel
+            return this.$store.state.titel
         }
     },
-    store
 }
 </script>
 
