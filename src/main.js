@@ -34,10 +34,6 @@ Vue.filter('moneyFormat', function(value) {
   }  
 });  
 
-router.afterEach((to,from) => {
-    window.scrollTo(0,0);
-  });
-
 //登陆状态和权限判断
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;//网页标签更改，需要mate值

@@ -1,5 +1,6 @@
 <template>
-    <Row class="Classification">
+<div  ref="top">
+<Row class="Classification">
         <Col>
         <Input id="search" v-model="searchVal" placeholder="搜索"/>
             <ul>
@@ -18,6 +19,8 @@
             </ul>
         </Col>
     </Row>
+</div>
+    
 </template>
 
 <script>
@@ -32,7 +35,13 @@ export default {
         sessionStorage.index=1;
         this.$store.commit('titlex');
         this.$store.commit('yesfoot');
-        this.$store.dispatch('allgame')
+        this.$store.dispatch('allgame');
+
+        
+
+    },
+    mounted(){
+        this.$refs.top.parentElement.scrollTop=0
     },
     computed:{
         searchData(){
