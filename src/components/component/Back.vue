@@ -16,11 +16,7 @@ export default {
     },
     methods:{
         backpage(){
-            if(sessionStorage.index==6){
-                return false
-            }else{
-                this.$router.go(-1);
-            }               
+                this.$router.go(-1);             
         },
     },
 }
